@@ -1,4 +1,3 @@
-import './App.css';
 import Calander from './component/Calander';
 
 function App() {

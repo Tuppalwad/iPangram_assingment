@@ -2,7 +2,11 @@ import React,{useState} from 'react'
 import Createcontext from './Createcontext'
 function Dataprovider(props) {
     const [currentDate, setCurrentDate] = useState(new Date());
-
+    const [timeZone, setTimeZone] = useState('[UTS-5] Eastern Standard Time');
+    const handleTimeZoneChange = (event) => {
+        setTimeZone(event.target.value);
+      };
+    
   const nextWeek = () => {
     const newDate = new Date(currentDate);
     newDate.setDate(newDate.getDate() + 7);
@@ -33,7 +37,10 @@ function Dataprovider(props) {
         previousWeek,
         formatDate,
         daysOfWeek,
-        currentDate
+        currentDate,
+        timeZone,
+        handleTimeZoneChange
+        
     
     }}>
         {props.children}
