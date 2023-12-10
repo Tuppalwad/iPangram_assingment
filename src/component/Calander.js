@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import CalanderBox from "./CalanderBox";
+import Createcontext from "./Context/Createcontext";
 
 function Calander() {
-  const date = new Date();
-  const monthAbbreviation = date.toLocaleString("default", { month: "short" });
-  const day = date.getDate();
-  const year = date.getFullYear();
+
+  const { nextWeek, previousWeek, currentDate } =useContext(Createcontext);
+    const monthAbbreviation = currentDate.toLocaleString("default", { month: "short" });
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear();
   return (
     <div className="container">
-      <div className="  justify-content-between d-flex align-items-center my-3">
-        <div className="d-flex  align-items-center ">
+      <div className="d-flex my-2 p-2  align-items-center justify-content-between">
+        <div className="d-flex align-items-center">
           <div>
-            <button className="btn btn text-primary">Privous Week</button>
+            <button className="btn btn text-primary" onClick={previousWeek}>
+              Previous Week
+            </button>
           </div>
           <div className="ms-5">
-            <div className="">{monthAbbreviation + " " + day + " " + year}</div>
+            <div className="">{
+              // show month adn corrent date and year
+              monthAbbreviation + " " + day + " " + year
+            }</div>
           </div>
         </div>
         <div>
-          <i class="fa fa-caret-right"></i>
-          <button className="btn btn text-primary">Next Week</button>
+          <button className="btn btn text-primary" onClick={nextWeek}>
+            Next Week
+          </button>
         </div>
       </div>
 
@@ -38,7 +46,7 @@ function Calander() {
           </option>
         </select>
       </div>
-      <CalanderBox  />
+      <CalanderBox />
     </div>
   );
 }
